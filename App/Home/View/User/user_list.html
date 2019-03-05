@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户列表</title>
+	<style>
+		table {
+			font-size: 16px;
+			color: #666;
+			width: 1200px;
+			margin: 0px auto;
+			text-align: center;
+			border-collapse: collapse;
+		}
+
+		th,td {
+			border: 1px solid #999;
+		}
+
+		tr:nth-child(even) {
+			background-color: #FFFFCC;
+		}
+	</style>
+</head>
+<body>
+	<a href="addbook.html">添加用户</a> 
+	<hr>
+	<table>
+		<caption><h2>用户列表</h2></caption>
+		<tr>
+			<th>编号</th>
+			<th>用户名</th>
+			<th>用户类型</th>
+			<th>用户状态</th>
+			<th>添加时间</th>
+		</tr>
+
+		<{foreach from=$dataArr key=k item=v}>
+		<tr>
+			<td><{$v.id}></td>
+			<td><{$v.username}></td>
+			<td><{$v.user_type}></td>
+			<td><{$v.user_state}></td>
+			<td><{$v.add_time}></td>
+		</tr>
+		<{/foreach}>
+		
+	</table>
+</body>
+</html>

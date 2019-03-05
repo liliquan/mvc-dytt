@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="Public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="Public/css/common.css" rel="stylesheet" type="text/css" />
+<script src="Public/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="Public/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+<script src="Public/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="Public/js/common.js" type="text/javascript"></script>
+<title>列表页</title>
+</head>
+
+<body class="background_color ">
+<div id="header_top">
+<div class="page_header">
+ <div class="header_style">
+  <div class="clearfix">
+    <a href="#" class="logo_style"><img src="Public/images/logo.png"  width="150px"/></a>
+    <ul class="nav_list">
+     <li class="nav_link"><a href="index.php" class="Channel_name"><i class="i icon_home"></i>首页</a></li>
+     <li class="nav_link Channel_link">
+     <a href="javascript:" class="Channel_name"><i class="i icon_nav"></i>频道<i class="i i_arw2"></i></a>
+     <div class="Channel_nav_list">
+        <ul class=" clearfix">
+   <{foreach from=$types item=$v}>
+   <li class="Channel_name1"><a href="index.php?p=home&c=film&a=doList&tname=<{$v.name}>&tid=<{$v.id}>" ><i class="icon_TV"></i><{$v.name}></a></li>
+   <{/foreach}>
+  </ul>
+     </div>
+     </li>
+    </ul>
+    <div class="search_style">
+      <input name="" type="text"  class="search"/><button name="" type="button" class="button_submit" onclick="submit_btn()"><i class="icon_search"></i>搜索</button>
+   </div>
+  </div>
+ </div>
+</div>
+<!--图片-->
+<div style=" background:url(Public/images/bg_b1.png) center repeat; height:221px;"></div>
+</div>
+<!---->
+<div class="page_style">
+<div class=" clearfix">
+<!--栏目-->
+ <div class="home_Column_style">
+ <div class="Column_list clearfix navigation_list">
+  <ul class="">
+   <{foreach from=$types item=$v}>
+   <li class="Channel_name1"><a href="index.php?p=home&c=film&a=doList&tname=<{$v.name}>&tid=<{$v.id}>" ><i class="icon_TV"></i><{$v.name}></a></li>
+   <{/foreach}>
+  </ul>
+  </div>
+  <!--栏目-->
+  <div class="Column_list navigation" style="display: none;">
+  <a href="#" class="w_logo"><img src="Public/images/logo.png" width="100%"></a>
+   <div class="navigatio_name">
+     <a href="javascript:" class="mouse-enter"><i class="icon_navigatio"></i>导航</a>
+     <div class="navigatio_nav">
+     <ul class=" clearfix">
+   <{foreach from=$types item=$v}>
+   <li class="Channel_name1"><a href="index.php?p=home&c=film&a=doList&tname=<{$v.name}>&tid=<{$v.id}>" ><i class="icon_TV"></i><{$v.name}></a></li>
+   <{/foreach}>
+  </ul>
+     </div>
+     
+   </div>
+   <div class="Video_search">
+     <input name="" type="text" class="search"><button name="" type="button" class=" btn-success button_submit"><i class="icon_search"></i>搜索</button>
+  </div>
+  </div>
+ </div>
+</div>
+<!--筛选-->
+<div class="filter_style">
+ <div class="selectNumberScreen">
+ <div class="hasBeenSelected">
+    <dl>
+      <dt style="width: 200px;"><{$tname}>：</dt>
+      <dd style="display:none" class="clearDd">
+        <div class="clearList"></div>
+        <div style="display:none;" class="eliminateCriteria">清除筛选条件</div>
+      </dd>
+    </dl>
+  </div>
+  <div id="selectList" class="screenBox screenBackground">
+     <dl class="listIndex" attr="terminal_brand_s">
+      <dt class="l_f">分类：</dt>
+      <dd><a href="javascript:void(0)" values2="" values1="" attrval="全部" >全部</a>
+      <{foreach from=$subtypes item=$v}>  
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$v.id}>&tname=<{$tname}>" values2="" values1="" attrval="<{$v.name}>" <{if $sid eq $v.id}> class="selected" <{/if}>><{$v.name}></a>
+      <{/foreach}>
+      
+     </dl>
+     <dl class="listIndex" attr="terminal_os_s">
+     <dt class="l_f">标签：</dt>
+    <dd>
+      <a href="javascript:void(0)" values2="" values1="" attrval="全部">全部</a>
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=喜剧" values2="" values1="" <{if $k eq '喜剧'}>   class="selected"   <{/if}> attrval="喜剧">喜剧</a> 
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=传记" values2="" values1="" <{if $k eq '传记'}>   class="selected"   <{/if}> attrval="传记">传记</a> 
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=历史" values2="" values1="" <{if $k eq '历史'}>   class="selected"   <{/if}> attrval="历史">历史</a>
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=动作" values2="" values1="" <{if $k eq '动作'}>   class="selected"   <{/if}> attrval="动作">动作</a>
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=家庭" values2="" values1="" <{if $k eq '家庭'}>  class="selected"    <{/if}> attrval="家庭">家庭</a>
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=奇幻" values2="" values1="" <{if $k eq '奇幻'}>  class="selected"    <{/if}> attrval="奇幻">奇幻</a>
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=剧情" values2="" values1="" <{if $k eq '剧情'}>   class="selected"   <{/if}> attrval="剧情">剧情</a>
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=战争" values2="" values1="" <{if $k eq '战争'}>   class="selected"   <{/if}> attrval="战争">战争</a>
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=恐怖" values2="" values1="" <{if $k eq '恐怖'}>    class="selected"  <{/if}> attrval="恐怖">恐怖</a>
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=悬疑" values2="" values1="" <{if $k eq '悬疑'}>   class="selected"   <{/if}> attrval="悬疑">悬疑</a>
+      <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=动画" values2="" values1="" <{if $k eq '动画'}>    class="selected"  <{/if}> attrval="动画">动画</a>
+     </dd>
+  </dl>
+    <dl class="listIndex" attr="terminal_os_s">
+      <dt class="l_f">地点：</dt>
+      <dd>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>" values2="" values1="" attrval="全部" >全部</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2018" values2="" values1="" <{if $y eq '2018'}>  class="selected" <{/if}> attrval="2018">2018</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2017" values2="" values1="" <{if $y eq '2017'}>  class="selected" <{/if}> attrval="2017">2017</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2016" values2="" values1="" <{if $y eq '2016'}>  class="selected" <{/if}> attrval="2016">2016</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2015" values2="" values1="" <{if $y eq '2015'}>  class="selected" <{/if}> attrval="2015">2015</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2014" values2="" values1="" <{if $y eq '2014'}>  class="selected" <{/if}> attrval="2014">2014</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2013" values2="" values1="" <{if $y eq '2013'}>  class="selected" <{/if}> attrval="2013">2013</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2012" values2="" values1="" <{if $y eq '2012'}>  class="selected" <{/if}> attrval="2012">2012</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2011" values2="" values1="" <{if $y eq '2011'}>  class="selected" <{/if}> attrval="2011">2011</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2010" values2="" values1="" <{if $y eq '2010'}>  class="selected" <{/if}> attrval="2010">2010</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2009" values2="" values1="" <{if $y eq '2009'}>  class="selected" <{/if}> attrval="2009">2009</a>
+            <a href="index.php?p=home&c=film&a=doList&tid=<{$tid}>&sid=<{$sid}>&tname=<{$tname}>&k=<{$k}>&y=2008" values2="" values1="" <{if $y eq '2008'}>  class="selected" <{/if}> attrval="2008">2008</a>
+      </dd>
+    </dl>
+   </div> 
+ </div>
+ <!---->
+ <div class="container_style ">
+ <div class="tab_box" id="sort_btn_wrap">
+  <a href="javascript:" class="hover">最新</a>
+  <a href="javascript:">最热</a>
+  <a href="javascript:">新上映</a>
+  <a href="javascript:">预告</a>
+  </div>
+ </div>
+</div>
+<!--列表展示-->
+<div class="movielist" id="movie_list">
+  <ul class="clearfix">
+
+    <{foreach from=$dataArr.data item=$film}>
+    <li class="movie_theme">
+     <i class="icon_b rb_ico"></i>
+    <a href="select.html" class="movie_img">
+     <img src="<{$film.file_poster}>"  width="183px;" title="<{$film.name_en}>"/>
+     <span class="v_title">
+      <em><{$film.film_time}></em><i class="fraction"><{$film.douban_score}>分</i>
+     </span>
+    </a>
+    <div class="movie_title">
+      <p class="movie_name"><a href="#" class="name"><{$film.name_en|mb_substr:0:12:'utf-8'}></a></p>
+      <p class="Description"><{$film.film_typename}></p>
+     </div>
+    </li>
+    <{/foreach}>
+
+  </ul>
+  <!--分页样式-->
+   <div class="Paging">
+    <{$dataArr.pageStr}>
+   </div>
+  
+</div>
+</div>
+<!--底部样式-->
+<div class="footer_style">
+<div class="footer">
+ <div class="copys copys-list clearfix">
+   <a href="#">网络文化经营许可证 京网文[2014]xxxxx-236号</a>
+   <a href="#">京卫网审[2013]第0209号 网络110报警服务</a>
+   <a href="#">药品服务许可证(京)-经营2222-0029</a>
+  <a href="#">节目制作经营许可证京字670号</a>
+ </div>
+<div class="link_name">
+<a href="#">关于我们</a>|<a href="#">媒体合作</a>|<a href="#">开放平台</a>|<a href="#">广告服务</a>|<a href="#">联系我们</a>|<a href="#">工作机会</a>|<a href="#">友情链接</a></div>
+<div class="Copyright">Copyright © 2004-2017 视频名称（xx.com）All rights reserved.</div>
+<div class="align clearfix">
+ <a href="#"><img src="Public/images/ghs.png" />京公网安备：xxxxxxxxxxxxxxxx号</a> &nbsp;&nbsp;&nbsp;
+ <a href="#"><img src="Public/images/xy.png" />中国互联网诚信联盟</a>
+</div>
+</div>
+
+</div>
+<!-- 代码 开始 -->
+<div class="go-top dn" id="go-top">
+    
+    <a href="zhuce.html" target="_blank" class="feedback"></a>
+    <a href="javascript:;" class="go"></a>
+</div>
+</body>
+</html>
+<script>
+ /****************************************/
+var dlNum  =$("#selectList").find("dl");
+for (i = 0; i < dlNum.length; i++) {
+  $(".hasBeenSelected .clearList").append("<div class=\"selectedInfor selectedShow\" style=\"display:none\"><label></label><em></em></div>");
+}
+var refresh = "true";
+$(".listIndex a ").bind("click",function(){
+  var text =$(this).text();
+  var selectedShow = $(".selectedShow");
+  var textTypeIndex =$(this).parents("dl").index();
+  var textType =$(this).parent("dd").siblings("dt").text();
+  index = textTypeIndex -(2);
+  $(".clearDd").show();
+  $(".selectedShow").eq(index).show();
+  $(this).addClass("selected").siblings().removeClass("selected");
+  selectedShow.eq(index).find("span").text(textType);
+  selectedShow.eq(index).find("label").text(text);
+  var show = $(".selectedShow").length - $(".selectedShow:hidden").length;
+  if (show > 1) {
+    $(".eliminateCriteria").show();
+  }
+   
+});
+$(".selectedShow em").bind("click",function(){
+  $(this).parents(".selectedShow").hide();
+  var textTypeIndex =$(this).parents(".selectedShow").index();
+  index = textTypeIndex;
+  $(".listIndex").eq(index).find("a").removeClass("selected");
+  
+  if($(".listIndex .selected").length < 2){
+    $(".eliminateCriteria").hide();
+  }
+});
+
+$(".eliminateCriteria").bind("click",function(){
+  $(".selectedShow").hide();
+  $(this).hide();
+  $(".listIndex a ").removeClass("selected");
+}); 
+/*********搜索*********/
+function submit_btn(){
+   $(".search_style input[type$='text']").each(function(n){
+      if($(this).val()=="")
+          {
+               
+         layer.alert("搜索框不能为空！",{
+                title: '提示框',       
+        icon:0,               
+          });         
+            return false;            
+          } 
+     else{
+       location.href="search_page.html";
+       
+       }
+     })   
+}
+</script>
